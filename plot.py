@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from scipy import stats
 from matplotlib import pyplot as plt
 from statsmodels.distributions.empirical_distribution import ECDF
 
@@ -15,7 +16,12 @@ for path in paths:
     ecdf = ECDF(D.squeeze())
     # Store in dict
     ecdf_dict[path] = ecdf
-
+    # Perform Kolmogorov-Smirnov test: compare empirical and theoretical cdf
+    loc, scale = np.mean(D), np.std(D, ddof=1)
+    cdf = stats.norm(loc, scale).cdf
+    p_value = stats.ks_1samp(ecdf.x, cdf).pvalue
+    print(f'{path} | {loc:.5e} | {scale:.5e} | {p_value:.2f}')
+    # Store resource usage in dataframes
     resource_usage = pd.read_csv(f'data/{path}/resource_usage.csv')
     resource_dict[path] = resource_usage
 
