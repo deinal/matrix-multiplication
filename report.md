@@ -36,7 +36,7 @@ The matrices are populated with random samples from the uniform distribution bet
     <img src="./figs/ecdf.png" width="400px">
 </center>
 
-We can take as a null hyopthesis that the empirical CDF is equal to the theoretical CDF of the normal distribution where the mean and standard deviation parameters are taken directly from the data in the matrix D of every run. We use the Kolmogorov-Smirnov to see if we reach a confidence level of 95%, i.e. if the p-value is less than 0.05 the null hyopthesis can be rejected. The table below show that the hypothesis indeed checks out. We can also see that the distributions of the different runs have similar mean and standard deviation statistics.
+We can take as a null hyopthesis that the empirical CDF is equal to the theoretical CDF of the normal distribution where the mean and standard deviation parameters are taken directly from the data in the matrix D of every run. We use the Kolmogorov-Smirnov test to see if we reach a confidence level of 95%, i.e. if the p-value is less than 0.05 the null hyopthesis can be rejected. The table below show that the hypothesis indeed checks out. We can also see that the distributions of the different runs have similar mean and standard deviation statistics.
 
 <center>
 
@@ -48,6 +48,8 @@ gpu/row | 1.24996e+08 | 2.28067e+06 | 0.54
 gpu/naive | 1.24970e+08 | 2.28264e+06 | 0.95
 
 </center>
+
+According to the central limit theorem, when adding independent random variables their normalized sum converges to a normal distribution even if the random variables are sampled from another distribution such as the uniform distribution. The uniform sum distribution specifically (without normalization) is known as the _Irwin–Hall distribution_. It strongly approximates the normal distribution when the number of summed elements is large, which certainly is the case when we perform matrix multiplication on our very large matrices.
 
 ## Evaluation
 
