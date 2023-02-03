@@ -30,10 +30,16 @@ The computer I ran this exercise on happened to have enough resources to also pe
 
 ## Dataset
 
-The matrices are populated with random samples from the uniform distribution between 0 and 1. After multiplication we get cumulative distributions resembling what a normal distribution would have as CDF. It is nice to see that all runs produce similar cumulative distribution functions - which is a good sanity check to confirm that the row-wise operations work as intended.
+Below is what the cumulative distribution function for matrix A looks like. It takes the shape of a straight line. From this we can infer that the elements of the matrix are sampled from a uniform distribution. This is actually the case since the matrices are populated with random samples from the uniform distribution between 0 and 1. 
 
 <center>
-    <img src="./figs/ecdf.png" width="400px">
+    <img src="./figs/ecdf_A.png" width="385px">
+</center>
+
+After multiplication we get matrix D with a cumulative distributions resembling what a normal distribution would have as CDF. It is nice to see that all runs produce similar cumulative distribution functions - which is a good sanity check to confirm that the row-wise operations work as intended.
+
+<center>
+    <img src="./figs/ecdf_D.png" width="385px">
 </center>
 
 We can take as a null hyopthesis that the empirical CDF is equal to the theoretical CDF of the normal distribution where the mean and standard deviation parameters are taken directly from the data in the matrix D of every run. We use the Kolmogorov-Smirnov test to see if we reach a confidence level of 95%, i.e. if the p-value is less than 0.05 the null hyopthesis can be rejected. The table below show that the hypothesis indeed checks out. We can also see that the distributions of the different runs have similar mean and standard deviation statistics.

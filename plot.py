@@ -2,9 +2,25 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 from matplotlib import pyplot as plt
+from numpy.random import rand as cpu_matrix
+from multiply import m, n
 from statsmodels.distributions.empirical_distribution import ECDF
 
 paths = ['cpu/row', 'cpu/naive', 'gpu/row', 'gpu/naive']
+
+
+A = cpu_matrix(m, n)
+print(1)
+ecdf = ECDF(A.ravel())
+print(2)
+points_to_plot = 100
+step = int(m * n / points_to_plot)
+plt.plot(ecdf.x[::step], ecdf.y[::step])
+print(3)
+plt.xlabel('A_ij')
+plt.ylabel('Cumulative probability')
+plt.savefig('figs/ecdf_A.png')
+plt.close()
 
 
 ecdf_dict = {}
@@ -31,7 +47,7 @@ for path in paths:
 plt.legend()
 plt.xlabel('D_ij')
 plt.ylabel('Cumulative probability')
-plt.savefig('figs/ecdf.png')
+plt.savefig('figs/ecdf_D.png')
 plt.close()
 
 
